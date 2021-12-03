@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: athirion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 14:23:39 by athirion          #+#    #+#             */
-/*   Updated: 2021/12/02 14:23:48 by athirion         ###   ########.fr       */
+/*   Updated: 2021/12/03 10:28:29 by athirion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_putnbrbase(long n, int baselen, char *base, int *len)
 	if (n < 0)
 	{
 		n *= -1;
-		write(1, "-", 1);
+		ft_putchar('-');
 		*len += 1;
 	}
 	if (n >= baselen)
@@ -31,11 +31,46 @@ void	ft_putnbrbase_ptr(unsigned long n, int baselen, char *base, int *len)
 	if (n < 0)
 	{
 		n = -n;
-		write(1, "-", 1);
+		ft_putchar('-');
 		*len += 1;
 	}
 	if (n >= (unsigned int)baselen)
 		ft_putnbrbase_ptr(n / (unsigned long)(baselen), baselen, base, len);
 	*len += 1;
 	write(1, &base[n % (unsigned long)baselen], 1);
+}
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_putstr(char *s)
+{
+	int	i;
+
+	i = 0;
+	if (s)
+	{	
+		while (s[i])
+		{
+			ft_putchar(s[i]);
+			i ++;
+		}
+	}
+}
+
+void	ft_putnbr(int n)
+{
+	long	ln;
+
+	ln = n;
+	if (ln < 0)
+	{
+		ln *= -1;
+		ft_putchar('-');
+	}
+	if (ln > 9)
+		ft_putnbr((int)(ln / 10));
+	write(1, &"0123456789"[ln % 10], 1);
 }

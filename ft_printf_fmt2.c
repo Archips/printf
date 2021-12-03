@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   options_2.c                                        :+:      :+:    :+:   */
+/*   ft_printf_fmt2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: athirion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 14:23:28 by athirion          #+#    #+#             */
-/*   Updated: 2021/12/02 14:23:30 by athirion         ###   ########.fr       */
+/*   Updated: 2021/12/03 10:12:51 by athirion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,26 @@ int	ft_chr(va_list args)
 	char	c;
 
 	c = (char) va_arg(args, int);
-	ft_putchar_fd(c, 1);
+	ft_putchar(c);
 	return (1);
 }
 
 int	ft_str(va_list args)
 {
 	char	*str;
+	int		i;
 
+	i = 0;
 	str = va_arg(args, char *);
 	if (!str)
 	{
-		ft_putstr_fd("(null)", 1);
+		ft_putstr("(null)");
 		return (6);
 	}
-	ft_putstr_fd(str, 1);
-	return ((int)ft_strlen(str));
+	ft_putstr(str);
+	while (str[i])
+		i ++;
+	return (i);
 }
 
 int	ft_ptr(va_list args)
@@ -44,7 +48,7 @@ int	ft_ptr(va_list args)
 	l = 0;
 	len = &l;
 	nb = va_arg(args, unsigned long);
-	ft_putstr_fd("0x", 1);
+	ft_putstr("0x");
 	ft_putnbrbase_ptr(nb, 16, "0123456789abcdef", len);
 	return (*len + 2);
 }
