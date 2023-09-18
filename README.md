@@ -1,6 +1,6 @@
 # Ft_printf
 
-The "ft_printf" project is a custom implementation of `printf()` function in C to handle various conversion specifiers and variable arguments. The objective is to replicate the functionality of the standard `printf()`.
+The "ft_printf" function is a custom implementation of `printf()` function in C to handle various conversion specifiers and variable arguments. The objective is to replicate the functionality of the standard `printf()`.
 ## Project Highlight
 
 - Custom implementation of `printf()` in C.
