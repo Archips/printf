@@ -6,7 +6,7 @@
 /*   By: athirion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 14:23:39 by athirion          #+#    #+#             */
-/*   Updated: 2021/12/03 10:28:29 by athirion         ###   ########.fr       */
+/*   Updated: 2023/09/18 16:12:30 by athirion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,6 @@ void	ft_putnbrbase(long n, int baselen, char *base, int *len)
 
 void	ft_putnbrbase_ptr(unsigned long n, int baselen, char *base, int *len)
 {
-	if (n < 0)
-	{
-		n = -n;
-		ft_putchar('-');
-		*len += 1;
-	}
 	if (n >= (unsigned int)baselen)
 		ft_putnbrbase_ptr(n / (unsigned long)(baselen), baselen, base, len);
 	*len += 1;

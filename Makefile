@@ -1,30 +1,31 @@
 .PHONY: all clean fclean re
 
-SRCS = ft_printf.c \
-		ft_printf_fmt1.c \
-		ft_printf_fmt2.c \
-		ft_printf_utils.c \
+SRCS = src/ft_printf.c \
+	src/ft_printf_fmt1.c \
+	src/ft_printf_fmt2.c \
+	src/ft_printf_utils.c \
 
-OBJS = ${SRCS:.c=.o}
+OBJS = $(patsubst src/%.c,obj/%.o,$(SRCS))
 NAME = libftprintf.a
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -c
 RM = rm -f
+CFLAGS = -Wall -Wextra -Werror -c -g3
 
-all: ${NAME}
+all: obj $(NAME)
 
-${NAME}: ${OBJS}
-	ar rcs ${NAME} ${OBJS}
+obj:
+	mkdir -p obj
 
-${OBJS}: ${SRCS}
-	${CC} ${CFLAGS} ${SRCS}
+$(NAME): $(OBJS)
+	ar rcs $(NAME) $(OBJS)
 
-clean: 
-	${RM} ${OBJS}
+obj/%.o: src/%.c
+	$(CC) $(CFLAGS) $< -o $@
+
+clean:
+	$(RM) -r obj
 
 fclean: clean
-	${RM} ${NAME}
+	$(RM) $(NAME)
 
 re: fclean all
-
-
